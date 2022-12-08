@@ -1,6 +1,5 @@
 use projektMTProd;
 
-select * from DIMDate;
 
 select
 	[date]
@@ -24,19 +23,6 @@ pivot
  sum(amount)
   for [customer_idkey] IN ([113],[972],[360],[700],[556],[291])
 ) as PivotTable
-
-
- with Sumamount as
- (
- select year(fDate) as fYear
-		,sum([Amount]) as SumAmount
- from Fact_sales
- group by year(fDate)
- )
-SELECT 
-      fYear
-	  ,stdev(SumAmount) over(order by fYear desc) as Std
-  from Sumamount
 
 
 select carrier,
